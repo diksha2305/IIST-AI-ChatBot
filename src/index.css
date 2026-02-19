@@ -15,16 +15,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 25% 15%;
 
-    --primary: 24 90% 50%;
+    --primary: 24 88% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 50% 20%;
+    --secondary: 215 55% 18%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 220 15% 95%;
     --muted-foreground: 220 15% 45%;
 
-    --accent: 24 90% 50%;
+    --accent: 24 88% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,18 +32,9 @@
 
     --border: 220 15% 88%;
     --input: 220 15% 88%;
-    --ring: 24 90% 50%;
+    --ring: 24 88% 50%;
 
     --radius: 0.375rem;
-
-    --sidebar-background: 215 50% 20%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 24 90% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 45% 28%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 215 40% 30%;
-    --sidebar-ring: 24 90% 50%;
   }
 }
 
@@ -56,20 +47,6 @@
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
   }
-  h1, h2, h3 {
-    font-family: 'Merriweather', serif;
-  }
-}
-
-/* Animations */
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slide-in {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes ticker {
@@ -77,29 +54,27 @@
   100% { transform: translateX(-100%); }
 }
 
-@keyframes scan-line {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes hud-blink {
-  0%, 90%, 100% { opacity: 1; }
-  95% { opacity: 0.3; }
+@keyframes slide-fade {
+  0%, 100% { opacity: 0; transform: scale(1.02); }
+  10%, 90% { opacity: 1; transform: scale(1); }
 }
 
-.animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
-.animate-slide-in { animation: slide-in 0.6s ease-out forwards; }
-.animate-hud-blink { animation: hud-blink 4s ease-in-out infinite; }
+.animate-fade-in-up { animation: fade-in-up 0.7s ease-out forwards; }
 .ticker-wrap { overflow: hidden; white-space: nowrap; }
-.ticker-content { display: inline-block; animation: ticker 30s linear infinite; }
+.ticker-content { display: inline-block; animation: ticker 35s linear infinite; }
 
 /* n8n Chat Widget Override */
 #n8n-chat {
-  --chat--color-primary: hsl(24, 90%, 50%);
-  --chat--color-primary-shade-50: hsl(24, 90%, 45%);
-  --chat--color-primary-shade-100: hsl(24, 90%, 40%);
-  --chat--color-secondary: hsl(215, 50%, 20%);
-  --chat--color-secondary-shade-50: hsl(215, 45%, 25%);
+  --chat--color-primary: hsl(24, 88%, 50%);
+  --chat--color-primary-shade-50: hsl(24, 88%, 45%);
+  --chat--color-primary-shade-100: hsl(24, 88%, 40%);
+  --chat--color-secondary: hsl(215, 55%, 18%);
+  --chat--color-secondary-shade-50: hsl(215, 50%, 24%);
   --chat--color-white: hsl(0, 0%, 100%);
   --chat--color-light: hsl(0, 0%, 98%);
   --chat--color-light-shade-50: hsl(220, 15%, 95%);
@@ -107,10 +82,10 @@
   --chat--color-medium: hsl(220, 15%, 70%);
   --chat--color-dark: hsl(220, 25%, 15%);
   --chat--color-disabled: hsl(220, 15%, 65%);
-  --chat--color-typing: hsl(24, 90%, 50%);
+  --chat--color-typing: hsl(24, 88%, 50%);
   --chat--message--bot--background: hsl(0, 0%, 100%);
   --chat--message--bot--color: hsl(220, 25%, 15%);
-  --chat--message--user--background: hsl(24, 90%, 50%);
+  --chat--message--user--background: hsl(24, 88%, 50%);
   --chat--message--user--color: hsl(0, 0%, 100%);
   --chat--window--width: 420px;
   --chat--window--height: 580px;

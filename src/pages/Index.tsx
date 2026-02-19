@@ -1,87 +1,58 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "@n8n/chat/style.css";
+import campusImg from "@/assets/campus.png";
+import hackathonImg from "@/assets/hackathon.png";
+import studentsImg from "@/assets/students.png";
+import kartingImg from "@/assets/karting.png";
 
-const skills = [
-  { name: "AI / ML", level: 90 },
-  { name: "Full Stack Dev", level: 85 },
-  { name: "Cloud & DevOps", level: 75 },
-  { name: "Data Engineering", level: 80 },
-  { name: "Automation", level: 95 },
+const news = [
+  { date: "Feb 15, 2026", title: "IIST Students Win Smart India Hackathon 2025 — Team 'Web Rebels' claims top honors" },
+  { date: "Feb 10, 2026", title: "Indian Superkarting Series 3.0 — Team Vijayrath secures Overall 2nd Runner-Up position" },
+  { date: "Feb 05, 2026", title: "Annual Technical Fest 'TECHNOVANZA 2026' registrations now open for all departments" },
+  { date: "Jan 28, 2026", title: "IIST signs MoU with leading IT companies for campus placements 2026 batch" },
+  { date: "Jan 20, 2026", title: "New AI & Machine Learning lab inaugurated with state-of-the-art GPU infrastructure" },
+  { date: "Jan 12, 2026", title: "IIST ranked among Top 50 Engineering Colleges in Madhya Pradesh by NIRF 2025" },
 ];
 
-const stats = [
-  { label: "PROJECTS", value: "24+" },
-  { label: "AUTOMATIONS", value: "50+" },
-  { label: "YEARS EXP", value: "5+" },
-  { label: "UPTIME", value: "99.9%" },
+const achievements = [
+  { value: "5000+", label: "Students Enrolled" },
+  { value: "200+", label: "Faculty Members" },
+  { value: "95%", label: "Placement Rate" },
+  { value: "150+", label: "Industry Partners" },
 ];
 
-const HUDCorner = ({ position }: { position: "tl" | "tr" | "bl" | "br" }) => {
-  const classes = {
-    tl: "top-0 left-0 border-t-2 border-l-2 rounded-tl-sm",
-    tr: "top-0 right-0 border-t-2 border-r-2 rounded-tr-sm",
-    bl: "bottom-0 left-0 border-b-2 border-l-2 rounded-bl-sm",
-    br: "bottom-0 right-0 border-b-2 border-r-2 rounded-br-sm",
-  };
-  return (
-    <div
-      className={`absolute w-4 h-4 border-primary ${classes[position]}`}
-    />
-  );
-};
+const departments = [
+  { icon: "💻", name: "Computer Science & Engineering" },
+  { icon: "⚡", name: "Electronics & Communication" },
+  { icon: "⚙️", name: "Mechanical Engineering" },
+  { icon: "🏗️", name: "Civil Engineering" },
+  { icon: "🤖", name: "Artificial Intelligence & ML" },
+  { icon: "📊", name: "Information Technology" },
+];
 
-const ScanLine = () => (
-  <div
-    className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
-    aria-hidden="true"
-  >
-    <div
-      className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"
-      style={{
-        animation: "scan-line 8s linear infinite",
-        top: 0,
-      }}
-    />
-  </div>
-);
-
-const GridBackground = () => (
-  <div
-    className="pointer-events-none fixed inset-0 z-0"
-    aria-hidden="true"
-    style={{
-      backgroundImage: `
-        linear-gradient(hsl(195 100% 50% / 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, hsl(195 100% 50% / 0.03) 1px, transparent 1px)
-      `,
-      backgroundSize: "60px 60px",
-    }}
-  />
-);
+const events = [
+  {
+    img: hackathonImg,
+    tag: "Hackathon",
+    title: "Smart India Hackathon 2020",
+    desc: "Team 'Web Rebels' represented IIST at SIH 2020 organized by Ministry of HRD, Government of India.",
+  },
+  {
+    img: kartingImg,
+    tag: "Sports",
+    title: "Indian Superkarting Series 3.0",
+    desc: "Team Vijayrath from IIST achieved Overall 2nd Runner-Up at the prestigious Indian Superkarting Series.",
+  },
+  {
+    img: studentsImg,
+    tag: "Event",
+    title: "Annual Fest & Cultural Meet",
+    desc: "Students and faculty come together at IIST's annual celebration of talent, innovation, and culture.",
+  },
+];
 
 const Index = () => {
   const chatInitialized = useRef(false);
-  const [time, setTime] = useState(new Date());
-  const [statusIndex, setStatusIndex] = useState(0);
-
-  const statuses = [
-    "SYSTEM ONLINE",
-    "AI CORE ACTIVE",
-    "NEURAL NET READY",
-    "AGENT STANDING BY",
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const si = setInterval(() => {
-      setStatusIndex((i) => (i + 1) % statuses.length);
-    }, 3000);
-    return () => clearInterval(si);
-  }, []);
 
   useEffect(() => {
     if (chatInitialized.current) return;
@@ -95,16 +66,16 @@ const Index = () => {
         chatInputKey: "chatInput",
         target: "#n8n-chat",
         initialMessages: [
-          "Hello! I'm J.A.R.V.I.S — your personal AI agent.",
-          "How can I assist you today?",
+          "Hello! I'm the IIST AI Assistant.",
+          "How can I help you today?",
         ],
         i18n: {
           en: {
-            title: "J.A.R.V.I.S",
-            subtitle: "Personal AI Agent · Online",
+            title: "IIST Assistant",
+            subtitle: "Ask about admissions, courses & more",
             footer: "",
-            getStarted: "Initiate Conversation",
-            inputPlaceholder: "Enter command...",
+            getStarted: "Start Conversation",
+            inputPlaceholder: "Type your question...",
             closeButtonTooltip: "Close",
           },
         },
@@ -112,263 +83,298 @@ const Index = () => {
     });
   }, []);
 
-  const formattedTime = time.toLocaleTimeString("en-US", {
-    hour12: false,
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
-
-  const formattedDate = time.toLocaleDateString("en-US", {
-    weekday: "short",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
-      <GridBackground />
-      <ScanLine />
+    <div className="min-h-screen bg-background text-foreground">
 
-      {/* Ambient glow blobs */}
-      <div
-        className="pointer-events-none fixed top-1/4 left-1/4 w-96 h-96 rounded-full opacity-5 blur-3xl"
-        style={{ background: "hsl(195 100% 50%)" }}
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none fixed bottom-1/4 right-1/4 w-72 h-72 rounded-full opacity-5 blur-3xl"
-        style={{ background: "hsl(195 100% 50%)" }}
-        aria-hidden="true"
-      />
+      {/* TOP INFO BAR */}
+      <div className="bg-secondary text-secondary-foreground text-xs py-1.5 px-4 flex justify-between items-center">
+        <span>Affiliated to RGPV (Bhopal) | Approved by AICTE (New Delhi)</span>
+        <div className="flex gap-4">
+          <span>📞 Toll Free: 1800 103 3069</span>
+          <span>🌐 www.indoreinstitute.com</span>
+        </div>
+      </div>
 
-      {/* TOP HUD BAR */}
-      <header className="relative z-10 flex items-center justify-between px-8 py-4 border-b border-border/40">
-        <div className="flex items-center gap-6">
-          <div className="hud-text text-primary text-xs tracking-widest animate-hud-blink">
-            ◈ SYS.ACTIVE
+      {/* MAIN HEADER */}
+      <header className="bg-white border-b-4 border-primary shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          {/* Logo & Title */}
+          <div className="flex items-center gap-4">
+            <div className="w-16 h-16 bg-secondary rounded flex items-center justify-center flex-shrink-0">
+              <div className="grid grid-cols-2 gap-0.5 p-1.5">
+                <div className="w-3 h-3 bg-primary rounded-sm" />
+                <div className="w-3 h-3 bg-primary rounded-sm" />
+                <div className="w-3 h-3 bg-secondary-foreground/30 rounded-sm" />
+                <div className="w-3 h-3 bg-primary rounded-sm" />
+              </div>
+            </div>
+            <div>
+              <h1 className="text-secondary text-2xl font-bold leading-tight" style={{ fontFamily: 'Merriweather, serif' }}>
+                Indore Institute of Science & Technology
+              </h1>
+              <p className="text-muted-foreground text-xs mt-0.5">
+                IIST Campus, Opp. IIM(Indore), Rau-Pithampur Road, Rau, Indore 453331 (MP)
+              </p>
+            </div>
           </div>
-          <div className="hud-text text-muted-foreground text-xs tracking-wider">
-            {formattedDate}
-          </div>
-        </div>
-        <div className="hud-text text-primary text-2xl font-bold tracking-[0.3em] hud-glow">
-          J.A.R.V.I.S
-        </div>
-        <div className="flex items-center gap-6">
-          <div className="hud-text text-primary text-xs tracking-widest">
-            {statuses[statusIndex]}
-          </div>
-          <div className="hud-text text-foreground text-lg font-bold tracking-widest">
-            {formattedTime}
+          {/* AI Assistant badge */}
+          <div className="hidden md:flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-2">
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <span className="text-primary text-sm font-semibold">AI Assistant Active</span>
           </div>
         </div>
       </header>
 
-      <main className="relative z-10 max-w-7xl mx-auto px-8 py-12">
-        {/* HERO SECTION */}
-        <section className="flex flex-col lg:flex-row items-center gap-16 mb-20">
-          {/* Orbital avatar */}
-          <div className="relative flex-shrink-0 w-64 h-64 flex items-center justify-center">
-            {/* Outer rotating ring */}
-            <div
-              className="absolute inset-0 rounded-full border border-primary/20 animate-rotate-slow"
-              style={{
-                borderTopColor: "hsl(195 100% 50%)",
-                borderRightColor: "transparent",
-              }}
-            />
-            {/* Middle ring */}
-            <div
-              className="absolute inset-6 rounded-full border border-primary/30 animate-rotate-reverse"
-              style={{
-                borderBottomColor: "hsl(195 100% 50%)",
-                borderLeftColor: "transparent",
-              }}
-            />
-            {/* Inner ring */}
-            <div className="absolute inset-12 rounded-full border border-primary/20 animate-rotate-slow" />
-            {/* Core */}
-            <div className="relative z-10 w-28 h-28 rounded-full border-2 border-primary flex items-center justify-center animate-glow-pulse"
-              style={{ background: "hsl(220 30% 6%)" }}>
-              <span className="hud-text text-primary text-4xl font-bold hud-glow">D</span>
-            </div>
-            {/* Orbit dot */}
-            <div
-              className="absolute w-3 h-3 rounded-full bg-primary animate-rotate-slow"
-              style={{ top: "8px", left: "50%", transformOrigin: "0 120px" }}
-            />
+      {/* NAVIGATION */}
+      <nav className="bg-secondary text-secondary-foreground sticky top-0 z-50 shadow-md">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-0 overflow-x-auto">
+            {["Home", "About", "Academics", "Admissions", "Research", "Placements", "Campus Life", "Contact"].map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="px-4 py-3 text-sm font-medium whitespace-nowrap hover:bg-primary hover:text-primary-foreground transition-colors duration-200 border-b-2 border-transparent hover:border-primary-foreground"
+              >
+                {item}
+              </a>
+            ))}
           </div>
+        </div>
+      </nav>
 
-          {/* Identity panel */}
-          <div className="flex-1 animate-fade-in-up">
-            <div className="hud-text text-muted-foreground text-xs tracking-[0.4em] mb-2">
-              ▸ IDENTITY CONFIRMED
+      {/* NEWS TICKER */}
+      <div className="bg-primary text-primary-foreground py-2 flex items-center gap-3 overflow-hidden">
+        <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 flex-shrink-0 ml-4 rounded">
+          LATEST NEWS
+        </span>
+        <div className="ticker-wrap flex-1">
+          <span className="ticker-content text-sm">
+            {news.map((n) => `📌 ${n.title}   •   `).join("")}
+          </span>
+        </div>
+      </div>
+
+      {/* HERO — CAMPUS IMAGE */}
+      <section className="relative h-[420px] overflow-hidden">
+        <img
+          src={campusImg}
+          alt="IIST Campus"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-secondary/80 via-secondary/40 to-transparent" />
+        <div className="absolute inset-0 flex items-center">
+          <div className="max-w-7xl mx-auto px-8 w-full">
+            <div className="max-w-xl animate-fade-in-up">
+              <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-2">
+                Welcome to
+              </p>
+              <h2 className="text-white text-4xl font-bold leading-tight mb-4" style={{ fontFamily: 'Merriweather, serif' }}>
+                Indore Institute of<br />
+                <span className="text-primary">Science & Technology</span>
+              </h2>
+              <p className="text-white/80 text-base mb-6 leading-relaxed">
+                Shaping tomorrow's engineers and innovators since 2000. 
+                Excellence in education, research and industry collaboration.
+              </p>
+              <div className="flex gap-3">
+                <a href="#" className="bg-primary text-primary-foreground px-5 py-2.5 rounded font-semibold text-sm hover:bg-primary/90 transition-colors">
+                  Apply Now
+                </a>
+                <a href="#" className="bg-white/20 backdrop-blur text-white border border-white/40 px-5 py-2.5 rounded font-semibold text-sm hover:bg-white/30 transition-colors">
+                  Explore Programs
+                </a>
+              </div>
             </div>
-            <h1 className="hud-text text-foreground text-5xl lg:text-6xl font-bold tracking-wider mb-2">
-              DIKSHA
-            </h1>
-            <h2 className="hud-text text-primary text-xl tracking-[0.3em] mb-6 hud-glow">
-              AKVEAN
+          </div>
+        </div>
+      </section>
+
+      {/* ACHIEVEMENT STATS */}
+      <section className="bg-secondary text-secondary-foreground">
+        <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-white/20">
+          {achievements.map((a) => (
+            <div key={a.label} className="text-center px-6 py-4">
+              <div className="text-primary text-3xl font-bold">{a.value}</div>
+              <div className="text-white/70 text-sm mt-1">{a.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* MAIN CONTENT — NEWS + DEPARTMENTS */}
+      <section className="max-w-7xl mx-auto px-6 py-10 grid lg:grid-cols-3 gap-8">
+
+        {/* NEWS & ANNOUNCEMENTS */}
+        <div className="lg:col-span-2">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-1 h-7 bg-primary rounded-full" />
+            <h2 className="text-secondary text-xl font-bold" style={{ fontFamily: 'Merriweather, serif' }}>
+              News & Announcements
             </h2>
-            <div className="w-24 h-px bg-primary mb-6 opacity-60" />
-            <p className="text-muted-foreground text-lg leading-relaxed max-w-xl font-light tracking-wide mb-8">
-              AI Engineer & Automation Architect. Building intelligent systems
-              that think, learn, and adapt. Powered by curiosity, driven by
-              data.
-            </p>
+          </div>
+          <div className="bg-white rounded-lg border border-border shadow-sm divide-y divide-border">
+            {news.map((item, i) => (
+              <div key={i} className="flex gap-4 p-4 hover:bg-muted/50 transition-colors group cursor-pointer">
+                <div className="flex-shrink-0 bg-primary/10 text-primary rounded px-2 py-1 text-center min-w-[70px]">
+                  <div className="text-xs font-semibold">{item.date.split(" ")[0]}</div>
+                  <div className="text-lg font-bold leading-none">{item.date.split(" ")[1].replace(",","")}</div>
+                  <div className="text-xs">{item.date.split(" ")[2]}</div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-foreground leading-relaxed group-hover:text-primary transition-colors">
+                    {item.title}
+                  </p>
+                  <span className="text-xs text-primary font-medium mt-1 inline-block">Read more →</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <a href="#" className="mt-3 inline-block text-primary text-sm font-semibold hover:underline">
+            View All News →
+          </a>
+        </div>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-3">
-              {["AI ENGINEER", "N8N EXPERT", "FULL STACK", "CLOUD NATIVE", "AUTOMATION"].map((tag) => (
-                <span
-                  key={tag}
-                  className="hud-text text-xs tracking-widest px-3 py-1 border border-border/60 text-muted-foreground hover:border-primary hover:text-primary transition-colors duration-300 cursor-default"
+        {/* QUICK LINKS + DEPARTMENTS */}
+        <div className="space-y-6">
+          {/* Departments */}
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-1 h-7 bg-primary rounded-full" />
+              <h2 className="text-secondary text-xl font-bold" style={{ fontFamily: 'Merriweather, serif' }}>
+                Departments
+              </h2>
+            </div>
+            <div className="space-y-2">
+              {departments.map((dept) => (
+                <a
+                  key={dept.name}
+                  href="#"
+                  className="flex items-center gap-3 bg-white border border-border rounded-lg px-4 py-3 hover:border-primary hover:bg-primary/5 transition-all group"
                 >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* STATS ROW */}
-        <section className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              className="relative p-5 border border-border/40 bg-card hud-panel-glow"
-              style={{ animationDelay: `${i * 0.1}s` }}
-            >
-              <HUDCorner position="tl" />
-              <HUDCorner position="br" />
-              <div className="hud-text text-primary text-3xl font-bold hud-glow mb-1">
-                {stat.value}
-              </div>
-              <div className="hud-text text-muted-foreground text-xs tracking-widest">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </section>
-
-        {/* SKILLS + AGENT INFO */}
-        <section className="grid lg:grid-cols-2 gap-8 mb-16">
-          {/* Skills */}
-          <div className="relative p-6 border border-border/40 bg-card hud-panel-glow">
-            <HUDCorner position="tl" />
-            <HUDCorner position="tr" />
-            <HUDCorner position="bl" />
-            <HUDCorner position="br" />
-            <div className="hud-text text-muted-foreground text-xs tracking-[0.4em] mb-6">
-              ▸ CAPABILITY MATRIX
-            </div>
-            <div className="space-y-5">
-              {skills.map((skill) => (
-                <div key={skill.name}>
-                  <div className="flex justify-between mb-1">
-                    <span className="hud-text text-xs tracking-widest text-foreground">
-                      {skill.name}
-                    </span>
-                    <span className="hud-text text-xs text-primary">{skill.level}%</span>
-                  </div>
-                  <div className="h-1 bg-secondary rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-primary rounded-full transition-all duration-1000"
-                      style={{
-                        width: `${skill.level}%`,
-                        boxShadow: "0 0 8px hsl(195 100% 50% / 0.6)",
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Agent Panel */}
-          <div className="relative p-6 border border-border/40 bg-card hud-panel-glow">
-            <HUDCorner position="tl" />
-            <HUDCorner position="tr" />
-            <HUDCorner position="bl" />
-            <HUDCorner position="br" />
-            <div className="hud-text text-muted-foreground text-xs tracking-[0.4em] mb-6">
-              ▸ AGENT CORE STATUS
-            </div>
-            <div className="space-y-4">
-              {[
-                { label: "MODEL", value: "N8N AI Agent" },
-                { label: "STATUS", value: "ONLINE ●", highlight: true },
-                { label: "PROTOCOL", value: "Webhook / REST" },
-                { label: "RESPONSE", value: "< 2s avg" },
-                { label: "MEMORY", value: "Persistent Context" },
-                { label: "TASKS", value: "Unlimited" },
-              ].map((item) => (
-                <div key={item.label} className="flex justify-between items-center border-b border-border/20 pb-3 last:border-0">
-                  <span className="hud-text text-muted-foreground text-xs tracking-widest">
-                    {item.label}
+                  <span className="text-xl">{dept.icon}</span>
+                  <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                    {dept.name}
                   </span>
-                  <span
-                    className={`hud-text text-xs tracking-wider ${
-                      item.highlight ? "text-primary hud-glow animate-hud-blink" : "text-foreground"
-                    }`}
-                  >
-                    {item.value}
+                  <span className="ml-auto text-muted-foreground group-hover:text-primary transition-colors">›</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="bg-secondary text-secondary-foreground rounded-lg p-5">
+            <h3 className="font-bold text-base mb-3 text-primary">Quick Links</h3>
+            <div className="space-y-2">
+              {["Admission 2026", "Fee Structure", "Exam Schedule", "Results", "Library Portal", "Student Login"].map((link) => (
+                <a key={link} href="#" className="flex items-center gap-2 text-sm text-white/80 hover:text-primary transition-colors">
+                  <span className="text-primary">›</span> {link}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ACHIEVEMENTS / EVENTS GALLERY */}
+      <section className="bg-muted py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <div className="w-1 h-1 hidden" />
+            <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-1">Our Pride</p>
+            <h2 className="text-secondary text-2xl font-bold" style={{ fontFamily: 'Merriweather, serif' }}>
+              Student Achievements & Events
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {events.map((ev, i) => (
+              <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm border border-border hover:shadow-md transition-shadow group">
+                <div className="relative h-52 overflow-hidden">
+                  <img
+                    src={ev.img}
+                    alt={ev.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded">
+                    {ev.tag}
                   </span>
                 </div>
+                <div className="p-4">
+                  <h3 className="font-bold text-foreground text-base mb-2">{ev.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{ev.desc}</p>
+                  <a href="#" className="mt-3 inline-block text-primary text-sm font-semibold hover:underline">
+                    Know More →
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI ASSISTANT BANNER */}
+      <section className="bg-secondary text-secondary-foreground py-10">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
+              <span className="text-primary text-sm font-semibold uppercase tracking-wider">AI-Powered Assistant</span>
+            </div>
+            <h3 className="text-white text-2xl font-bold mb-2" style={{ fontFamily: 'Merriweather, serif' }}>
+              Have Questions? Ask Our AI Assistant
+            </h3>
+            <p className="text-white/70 text-sm max-w-lg">
+              Get instant answers about admissions, courses, fee structure, campus facilities and more — available 24/7.
+            </p>
+          </div>
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <div className="text-right hidden md:block">
+              <p className="text-white/60 text-xs">Powered by</p>
+              <p className="text-primary font-bold text-sm">IIST AI · n8n Agent</p>
+            </div>
+            <div className="w-16 h-16 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-2xl">
+              🤖
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-foreground text-white">
+        <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8">
+          <div>
+            <h4 className="text-primary font-bold text-base mb-3">IIST Indore</h4>
+            <p className="text-white/60 text-sm leading-relaxed">
+              IIST Campus, Opp. IIM(Indore),<br />
+              Rau-Pithampur Road, Rau,<br />
+              Indore 453331 (MP)
+            </p>
+          </div>
+          <div>
+            <h4 className="text-primary font-bold text-base mb-3">Contact Us</h4>
+            <div className="space-y-1 text-sm text-white/60">
+              <p>📞 Toll Free: 1800 103 3069</p>
+              <p>📞 822 407 1000/2000/3000/4000</p>
+              <p>📞 822 507 1000/2000/3000</p>
+              <p>🌐 www.indoreinstitute.com</p>
+            </div>
+          </div>
+          <div>
+            <h4 className="text-primary font-bold text-base mb-3">Important Links</h4>
+            <div className="space-y-1">
+              {["About IIST", "Admissions", "Academics", "Research", "Placements", "Contact"].map((l) => (
+                <a key={l} href="#" className="block text-sm text-white/60 hover:text-primary transition-colors">
+                  › {l}
+                </a>
               ))}
             </div>
           </div>
-        </section>
-
-        {/* AGENT ACTIVATION SECTION */}
-        <section className="relative p-8 border border-primary/30 bg-card hud-panel-glow text-center mb-16">
-          <HUDCorner position="tl" />
-          <HUDCorner position="tr" />
-          <HUDCorner position="bl" />
-          <HUDCorner position="br" />
-          <div className="hud-text text-muted-foreground text-xs tracking-[0.5em] mb-4">
-            ▸ ACTIVATE PERSONAL AGENT
-          </div>
-          <h3 className="hud-text text-foreground text-2xl font-bold tracking-widest mb-4">
-            SPEAK WITH <span className="text-primary hud-glow">J.A.R.V.I.S</span>
-          </h3>
-          <p className="text-muted-foreground tracking-wide max-w-lg mx-auto mb-6">
-            Your AI-powered personal agent is live. Ask anything — from scheduling 
-            to research, automation to analysis. The agent adapts to you.
-          </p>
-          <div className="flex items-center justify-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="hud-text text-primary text-xs tracking-widest">
-              CHAT WIDGET ACTIVE — BOTTOM RIGHT ↘
-            </span>
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-          </div>
-        </section>
-      </main>
-
-      {/* BOTTOM HUD BAR */}
-      <footer className="relative z-10 border-t border-border/40 px-8 py-4 flex items-center justify-between">
-        <div className="hud-text text-muted-foreground text-xs tracking-widest">
-          JARVIS v2.0 · PERSONAL AGENT SYSTEM
         </div>
-        <div className="flex gap-6">
-          {["GITHUB", "LINKEDIN", "EMAIL"].map((link) => (
-            <span
-              key={link}
-              className="hud-text text-muted-foreground text-xs tracking-widest hover:text-primary transition-colors cursor-pointer"
-            >
-              {link}
-            </span>
-          ))}
-        </div>
-        <div className="hud-text text-muted-foreground text-xs tracking-widest animate-hud-blink">
-          ◈ ALL SYSTEMS NOMINAL
+        <div className="border-t border-white/10 py-4 text-center text-white/40 text-xs">
+          © 2026 Indore Institute of Science & Technology. All rights reserved. | Affiliated to RGPV (Bhopal) | Approved by AICTE (New Delhi)
         </div>
       </footer>
 
-      {/* n8n chat widget mount point */}
+      {/* n8n chat widget */}
       <div id="n8n-chat" />
     </div>
   );
