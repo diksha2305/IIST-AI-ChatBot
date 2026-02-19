@@ -311,6 +311,116 @@ const Index = () => {
         </div>
       </section>
 
+      {/* UPSKILLING & CERTIFICATIONS */}
+      <section className="py-14 bg-background">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-1">Skill Development</p>
+            <h2 className="text-secondary text-2xl font-bold" style={{ fontFamily: 'Merriweather, serif' }}>
+              Upskilling & Certification Programs
+            </h2>
+            <p className="text-muted-foreground text-sm mt-2 max-w-xl mx-auto">
+              IIST empowers students with industry-recognized certifications and hands-on learning platforms to stay ahead in the tech world.
+            </p>
+          </div>
+
+          {/* Program Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            {/* Virtual Labs */}
+            <div className="bg-white border border-border rounded-xl p-6 hover:shadow-md hover:border-primary transition-all group">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-2xl mb-4">🔬</div>
+              <h3 className="text-secondary font-bold text-lg mb-2 group-hover:text-primary transition-colors" style={{ fontFamily: 'Merriweather, serif' }}>
+                Virtual Labs
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                Access IIT-developed virtual experiments for Physics, Chemistry, Electronics, and CS labs — anytime, anywhere via Ministry of Education initiative.
+              </p>
+              <ul className="space-y-1 mb-5">
+                {["50+ Virtual Experiments", "IIT Collaborated", "Free Access for Students", "Certificate on Completion"].map(f => (
+                  <li key={f} className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span className="text-primary font-bold">✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="https://www.vlab.co.in" target="_blank" rel="noopener noreferrer"
+                className="inline-block bg-primary text-primary-foreground text-xs font-bold px-4 py-2 rounded hover:bg-primary/90 transition-colors">
+                Access Virtual Labs →
+              </a>
+            </div>
+
+            {/* AWS Certification */}
+            <div className="bg-white border border-border rounded-xl p-6 hover:shadow-md hover:border-primary transition-all group">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-2xl mb-4">☁️</div>
+              <h3 className="text-secondary font-bold text-lg mb-2 group-hover:text-primary transition-colors" style={{ fontFamily: 'Merriweather, serif' }}>
+                AWS Certification
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                IIST is an AWS Academy member institution. Students get access to AWS Educate credits, cloud labs, and preparation for globally recognized AWS certifications.
+              </p>
+              <ul className="space-y-1 mb-5">
+                {["AWS Cloud Practitioner", "AWS Solutions Architect", "Free AWS Educate Credits", "Industry-Recognized Badge"].map(f => (
+                  <li key={f} className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span className="text-primary font-bold">✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="https://aws.amazon.com/training/awsacademy/" target="_blank" rel="noopener noreferrer"
+                className="inline-block bg-primary text-primary-foreground text-xs font-bold px-4 py-2 rounded hover:bg-primary/90 transition-colors">
+                Explore AWS Programs →
+              </a>
+            </div>
+
+            {/* NPTEL */}
+            <div className="bg-white border border-border rounded-xl p-6 hover:shadow-md hover:border-primary transition-all group">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-2xl mb-4">🎓</div>
+              <h3 className="text-secondary font-bold text-lg mb-2 group-hover:text-primary transition-colors" style={{ fontFamily: 'Merriweather, serif' }}>
+                NPTEL Courses
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                IIST is an NPTEL Local Chapter. Enroll in IIT & IISc faculty-taught courses across Engineering, Science, and Management with proctored exams and certificates.
+              </p>
+              <ul className="space-y-1 mb-5">
+                {["1000+ Free Courses", "IIT/IISc Faculty", "Proctored Certification Exam", "SWAYAM Credit Transfer"].map(f => (
+                  <li key={f} className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span className="text-primary font-bold">✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="https://nptel.ac.in" target="_blank" rel="noopener noreferrer"
+                className="inline-block bg-primary text-primary-foreground text-xs font-bold px-4 py-2 rounded hover:bg-primary/90 transition-colors">
+                Browse NPTEL Courses →
+              </a>
+            </div>
+          </div>
+
+          {/* Student Registration CTA */}
+          <div className="bg-secondary rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <p className="text-primary text-xs font-bold uppercase tracking-widest mb-1">🚀 Start Upskilling Today</p>
+              <h3 className="text-white text-xl font-bold mb-2" style={{ fontFamily: 'Merriweather, serif' }}>
+                Register for Certification Programs
+              </h3>
+              <p className="text-white/70 text-sm max-w-lg">
+                IIST students can enroll in Virtual Labs, AWS Academy, and NPTEL courses through the Student Portal. Build your profile, earn certificates, and stay industry-ready.
+              </p>
+              <div className="flex flex-wrap gap-3 mt-4">
+                {["Virtual Labs", "AWS Academy", "NPTEL / SWAYAM", "Coursera for Campus"].map(tag => (
+                  <span key={tag} className="bg-white/10 border border-white/20 text-white text-xs px-3 py-1 rounded-full">{tag}</span>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-3 flex-shrink-0">
+              <a href="#" className="bg-primary text-primary-foreground font-bold text-sm px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors text-center whitespace-nowrap">
+                🎯 Student Sign Up / Register
+              </a>
+              <a href="#" className="bg-white/10 border border-white/30 text-white font-semibold text-sm px-6 py-3 rounded-lg hover:bg-white/20 transition-colors text-center whitespace-nowrap">
+                📋 View All Programs
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* AI ASSISTANT BANNER */}
       <section className="bg-secondary text-secondary-foreground py-10">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
