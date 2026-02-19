@@ -2,53 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Jarvis HUD Design System */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap');
 
 @layer base {
   :root {
-    --background: 220 30% 4%;
-    --foreground: 195 100% 85%;
+    --background: 0 0% 98%;
+    --foreground: 220 25% 15%;
 
-    --card: 220 30% 6%;
-    --card-foreground: 195 100% 85%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 15%;
 
-    --popover: 220 30% 6%;
-    --popover-foreground: 195 100% 85%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 15%;
 
-    --primary: 195 100% 50%;
-    --primary-foreground: 220 30% 4%;
+    --primary: 24 90% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 25% 10%;
-    --secondary-foreground: 195 80% 70%;
+    --secondary: 215 50% 20%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 25% 8%;
-    --muted-foreground: 195 40% 55%;
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 15% 45%;
 
-    --accent: 195 100% 50%;
-    --accent-foreground: 220 30% 4%;
+    --accent: 24 90% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 195 60% 20%;
-    --input: 195 60% 20%;
-    --ring: 195 100% 50%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 24 90% 50%;
 
-    --radius: 0.25rem;
+    --radius: 0.375rem;
 
-    --hud-glow: 195 100% 50%;
-    --hud-dim: 195 60% 25%;
-    --hud-panel: 220 30% 6%;
-
-    --sidebar-background: 220 30% 4%;
-    --sidebar-foreground: 195 100% 85%;
-    --sidebar-primary: 195 100% 50%;
-    --sidebar-primary-foreground: 220 30% 4%;
-    --sidebar-accent: 220 25% 10%;
-    --sidebar-accent-foreground: 195 80% 70%;
-    --sidebar-border: 195 60% 20%;
-    --sidebar-ring: 195 100% 50%;
+    --sidebar-background: 215 50% 20%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 24 90% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 45% 28%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 40% 30%;
+    --sidebar-ring: 24 90% 50%;
   }
 }
 
@@ -58,15 +53,28 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+  }
+  h1, h2, h3 {
+    font-family: 'Merriweather', serif;
   }
 }
 
-/* HUD Animations */
-@keyframes pulse-ring {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.02); }
+/* Animations */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
 @keyframes scan-line {
@@ -79,72 +87,31 @@
   95% { opacity: 0.3; }
 }
 
-@keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes rotate-reverse {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
-}
-
-@keyframes data-stream {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-20px); opacity: 0; }
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 10px hsl(195 100% 50% / 0.3), 0 0 20px hsl(195 100% 50% / 0.1); }
-  50% { box-shadow: 0 0 20px hsl(195 100% 50% / 0.6), 0 0 40px hsl(195 100% 50% / 0.3); }
-}
-
-.animate-pulse-ring { animation: pulse-ring 3s ease-in-out infinite; }
-.animate-rotate-slow { animation: rotate-slow 20s linear infinite; }
-.animate-rotate-reverse { animation: rotate-reverse 15s linear infinite; }
+.animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
+.animate-slide-in { animation: slide-in 0.6s ease-out forwards; }
 .animate-hud-blink { animation: hud-blink 4s ease-in-out infinite; }
-.animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
-.animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
-
-.hud-text { font-family: 'Orbitron', monospace; }
-.hud-border { border: 1px solid hsl(195 60% 25%); }
-.hud-glow { text-shadow: 0 0 10px hsl(195 100% 50% / 0.8); }
-.hud-panel-glow { box-shadow: 0 0 20px hsl(195 100% 50% / 0.1), inset 0 0 20px hsl(195 100% 50% / 0.03); }
+.ticker-wrap { overflow: hidden; white-space: nowrap; }
+.ticker-content { display: inline-block; animation: ticker 30s linear infinite; }
 
 /* n8n Chat Widget Override */
 #n8n-chat {
-  --chat--color-primary: hsl(195, 100%, 50%);
-  --chat--color-primary-shade-50: hsl(195, 100%, 45%);
-  --chat--color-primary-shade-100: hsl(195, 100%, 40%);
-  --chat--color-secondary: hsl(220, 30%, 6%);
-  --chat--color-secondary-shade-50: hsl(220, 30%, 8%);
-  --chat--color-white: hsl(195, 100%, 85%);
-  --chat--color-light: hsl(220, 30%, 6%);
-  --chat--color-light-shade-50: hsl(220, 25%, 10%);
-  --chat--color-light-shade-100: hsl(220, 25%, 12%);
-  --chat--color-medium: hsl(195, 60%, 25%);
-  --chat--color-dark: hsl(195, 100%, 85%);
-  --chat--color-disabled: hsl(195, 40%, 30%);
-  --chat--color-typing: hsl(195, 100%, 50%);
-  --chat--message--bot--background: hsl(220, 30%, 6%);
-  --chat--message--bot--color: hsl(195, 100%, 85%);
-  --chat--message--user--background: hsl(195, 100%, 50%);
-  --chat--message--user--color: hsl(220, 30%, 4%);
+  --chat--color-primary: hsl(24, 90%, 50%);
+  --chat--color-primary-shade-50: hsl(24, 90%, 45%);
+  --chat--color-primary-shade-100: hsl(24, 90%, 40%);
+  --chat--color-secondary: hsl(215, 50%, 20%);
+  --chat--color-secondary-shade-50: hsl(215, 45%, 25%);
+  --chat--color-white: hsl(0, 0%, 100%);
+  --chat--color-light: hsl(0, 0%, 98%);
+  --chat--color-light-shade-50: hsl(220, 15%, 95%);
+  --chat--color-light-shade-100: hsl(220, 15%, 92%);
+  --chat--color-medium: hsl(220, 15%, 70%);
+  --chat--color-dark: hsl(220, 25%, 15%);
+  --chat--color-disabled: hsl(220, 15%, 65%);
+  --chat--color-typing: hsl(24, 90%, 50%);
+  --chat--message--bot--background: hsl(0, 0%, 100%);
+  --chat--message--bot--color: hsl(220, 25%, 15%);
+  --chat--message--user--background: hsl(24, 90%, 50%);
+  --chat--message--user--color: hsl(0, 0%, 100%);
   --chat--window--width: 420px;
   --chat--window--height: 580px;
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
 }
